@@ -71,133 +71,85 @@ class PaymentsController extends Controller
     public function actionCreate()
     {
         $model = new Payments();
-        $transaction = Yii::$app->db->beginTransaction(); // Start a transaction
 
-        try {
-            if ($this->request->isPost) {
-                if ($model->load($this->request->post()) && $model->save()) {
-                    $phone = $model->phone;
-                    $amount = $model->amount;
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                $phone = $model->phone;
+                $amount = $model->amount;
 
-                    // Initiate the STK Push
-                    $status = $this->initiateStkPush($amount, $phone);
+                // Initiate STK push and get invoice ID
+                $invoice_id = $this->initiateStkPush($amount, $phone);
 
-                    // Check if status is a success or error
-                    if (strpos($status, 'Error') !== false) {
-                        Yii::$app->session->setFlash('error', 'Payment failed: ' . $status);
-                        $model->status = 'FAILED';
-                    } else {
-                        if ($status === 'COMPLETE') {
-                            $model->status = 'PAID';
-                            Yii::$app->session->setFlash('success', 'Payment successful. Status: ' . $status);
-                        } else {
-                            $model->status = 'PENDING';
-                            Yii::$app->session->setFlash('warning', 'Payment is processing. Status: ' . $status);
-                        }
-                    }
-
-                    if (!$model->save()) {
-                        throw new \Exception('Failed to update payment status.');
-                    }
-
-                    $transaction->commit(); // Commit transaction if everything went well
-
+                if ($invoice_id) {
+                    Yii::$app->session->setFlash('success', 'Payment initiated. Please check your phone.');
                     return $this->redirect(['view', 'id' => $model->id]);
+                } else {
+                    Yii::$app->session->setFlash('error', 'Failed to initiate payment.');
                 }
-            } else {
-                $model->loadDefaultValues();
             }
-
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        } catch (\Exception $e) {
-            $transaction->rollBack(); // Rollback in case of error
-            Yii::$app->session->setFlash('error', 'Error processing payment: ' . $e->getMessage());
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        } else {
+            $model->loadDefaultValues();
         }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
-
-
-    // public function initiateStkPush($amount, $phone_number)
-    // {
-    //     // Define your credentials
-    //     $credentials = [
-    //         'token' => 'ISSecretKey_test_691abd3d-84d5-4c9b-a4e1-801a4aa7e404',
-    //         'publishable_key' => 'ISPubKey_test_c1825e70-974c-4fdb-861f-cec6ae1d1d2d',
-    //         'test' => true,
-    //     ];
-
-    //     // Initialize the Collection class
-    //     $collection = new Collection();
-    //     $collection->init($credentials);
-
-    //     // Initiate the STK push
-    //     $response = $collection->mpesa_stk_push($amount, $phone_number);
-
-    //     // Check if the response is valid
-    //     if (isset($response->invoice) && isset($response->invoice->invoice_id)) {
-    //         $invoice_id = $response->invoice->invoice_id;
-    //     } else {
-    //         // Handle error if the invoice ID is not present in the response
-    //         return 'Error: Invalid response from STK push initiation.';
-    //     }
-
-    //     // Initialize status variable
-    //     $status = "PROCESSING";
-
-    //     // Check the status of the invoice
-    //     while ($status == "PROCESSING") {
-    //         sleep(1); // Delay for a second before checking status again
-
-    //         // Check the status of the invoice
-    //         $statusResponse = $collection->status($invoice_id);
-
-    //         // Check if the status response is valid
-    //         if (isset($statusResponse->invoice) && isset($statusResponse->invoice->state)) {
-    //             $status = $statusResponse->invoice->state;
-    //         } else {
-    //             // Handle error if the status response is not valid
-    //             return 'Error: Unable to retrieve status for the invoice.';
-    //         }
-    //     }
-
-    //     return $status;
-    // }
 
     public function initiateStkPush($amount, $phone_number)
     {
+        // Define your credentials
+        $credentials = [
+            'token' => 'ISSecretKey_test_691abd3d-84d5-4c9b-a4e1-801a4aa7e404',
+            'publishable_key' => 'ISPubKey_test_c1825e70-974c-4fdb-861f-cec6ae1d1d2d',
+            'test' => true,
+        ];
 
-        global $credentials;
+        // Initialize the Collection class
+        $collection = new Collection();
+        $collection->init($credentials);
+
+        // Initiate the STK push
+        $response = $collection->mpesa_stk_push($amount, $phone_number);
+
+        if (isset($response->invoice) && isset($response->invoice->invoice_id)) {
+            $invoice_id = $response->invoice->invoice_id;
+            // Store the invoice_id in the session for later status check
+            Yii::$app->session->set('invoice_id', $invoice_id);
+            return $invoice_id; // Return the invoice ID
+        } else {
+            return 'Error: Invalid response from STK push initiation.';
+        }
+    }
+
+    public function actionCheckStatus()
+    {
+        $invoice_id = Yii::$app->session->get('invoice_id');
+
+        if (!$invoice_id) {
+            return json_encode(['status' => 'error', 'message' => 'No invoice ID found.']);
+        }
+
+        $credentials = [
+            'token' => 'ISSecretKey_test_691abd3d-84d5-4c9b-a4e1-801a4aa7e404',
+            'publishable_key' => 'ISPubKey_test_c1825e70-974c-4fdb-861f-cec6ae1d1d2d',
+            'test' => true,
+        ];
 
         $collection = new Collection();
         $collection->init($credentials);
 
-        //initiating the stk push
-        $response = $collection->mpesa_stk_push($amount, $phone_number);
+        // Get the status of the transaction
+        $statusResponse = $collection->status($invoice_id);
 
-        //Get Invoive ID
-        $invoice_id = $response->invoice->invoice_id;
-
-        //initialize status variable
-        $status = "PROCESSING";
-
-        //check the status
-        while ($status == "PROCESSING") {
-
-            sleep(1);
-
-            //check
-            $statusResponse = $collection->status($invoice_id);
-            //get update on status
-
+        if (isset($statusResponse->invoice) && isset($statusResponse->invoice->state)) {
             $status = $statusResponse->invoice->state;
+            return json_encode(['status' => $status]); // Return the status as JSON
+        } else {
+            return json_encode(['status' => 'error', 'message' => 'Unable to retrieve status.']);
         }
-
-        return $status;
     }
+
 
 
     /**
