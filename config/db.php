@@ -28,7 +28,7 @@ if ($host === 'localhost') {
     // Production environment for doubledeals.co.ke
     return [
         'class' => 'yii\db\Connection',
-        'dsn' => 'mysql:host=localhost;dbname=dandeal_intasend',
+        'dsn' => 'mysql:host=localhost;dbname=dandeal_dan',
         'username' => 'dandeal_danny',
         'password' => 'I4QG&5C02mj[',
         'charset' => 'utf8',
