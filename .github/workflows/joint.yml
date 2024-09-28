@@ -6,14 +6,14 @@ on:
 jobs:
   # Deploy to delta.doubledeals.co.ke
   deploy-to-delta:
-    name: 🎉 Deploy to Delta DoubleDeals
+    name: 🎉 Deploy to intasend DoubleDeals
     runs-on: ubuntu-latest
 
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      - name: 📂 Sync files to Delta DoubleDeals
+      - name: 📂 Sync files to intasend DoubleDeals
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ftp.doubledeals.co.ke
