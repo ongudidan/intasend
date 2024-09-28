@@ -86,7 +86,7 @@ class PaymentsController extends Controller
                     $status = "PROCESSING";
 
                     // Loop until the payment status is no longer "PROCESSING"
-                    while ($status === "PROCESSING") {
+                    while ($status === "PROCESSING" || $status = null) {
                         sleep(1); // Optional: Avoid too many requests in a short time
 
                         // Check the status using the invoice ID
