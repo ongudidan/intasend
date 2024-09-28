@@ -121,47 +121,79 @@ class PaymentsController extends Controller
     }
 
 
+    // public function initiateStkPush($amount, $phone_number)
+    // {
+    //     // Define your credentials
+    //     $credentials = [
+    //         'token' => 'ISSecretKey_test_691abd3d-84d5-4c9b-a4e1-801a4aa7e404',
+    //         'publishable_key' => 'ISPubKey_test_c1825e70-974c-4fdb-861f-cec6ae1d1d2d',
+    //         'test' => true,
+    //     ];
+
+    //     // Initialize the Collection class
+    //     $collection = new Collection();
+    //     $collection->init($credentials);
+
+    //     // Initiate the STK push
+    //     $response = $collection->mpesa_stk_push($amount, $phone_number);
+
+    //     // Check if the response is valid
+    //     if (isset($response->invoice) && isset($response->invoice->invoice_id)) {
+    //         $invoice_id = $response->invoice->invoice_id;
+    //     } else {
+    //         // Handle error if the invoice ID is not present in the response
+    //         return 'Error: Invalid response from STK push initiation.';
+    //     }
+
+    //     // Initialize status variable
+    //     $status = "PROCESSING";
+
+    //     // Check the status of the invoice
+    //     while ($status == "PROCESSING") {
+    //         sleep(1); // Delay for a second before checking status again
+
+    //         // Check the status of the invoice
+    //         $statusResponse = $collection->status($invoice_id);
+
+    //         // Check if the status response is valid
+    //         if (isset($statusResponse->invoice) && isset($statusResponse->invoice->state)) {
+    //             $status = $statusResponse->invoice->state;
+    //         } else {
+    //             // Handle error if the status response is not valid
+    //             return 'Error: Unable to retrieve status for the invoice.';
+    //         }
+    //     }
+
+    //     return $status;
+    // }
+
     public function initiateStkPush($amount, $phone_number)
     {
-        // Define your credentials
-        $credentials = [
-            'token' => 'ISSecretKey_test_691abd3d-84d5-4c9b-a4e1-801a4aa7e404',
-            'publishable_key' => 'ISPubKey_test_c1825e70-974c-4fdb-861f-cec6ae1d1d2d',
-            'test' => true,
-        ];
 
-        // Initialize the Collection class
+        global $credentials;
+
         $collection = new Collection();
         $collection->init($credentials);
 
-        // Initiate the STK push
+        //initiating the stk push
         $response = $collection->mpesa_stk_push($amount, $phone_number);
 
-        // Check if the response is valid
-        if (isset($response->invoice) && isset($response->invoice->invoice_id)) {
-            $invoice_id = $response->invoice->invoice_id;
-        } else {
-            // Handle error if the invoice ID is not present in the response
-            return 'Error: Invalid response from STK push initiation.';
-        }
+        //Get Invoive ID
+        $invoice_id = $response->invoice->invoice_id;
 
-        // Initialize status variable
+        //initialize status variable
         $status = "PROCESSING";
 
-        // Check the status of the invoice
+        //check the status
         while ($status == "PROCESSING") {
-            sleep(1); // Delay for a second before checking status again
 
-            // Check the status of the invoice
+            sleep(1);
+
+            //check
             $statusResponse = $collection->status($invoice_id);
+            //get update on status
 
-            // Check if the status response is valid
-            if (isset($statusResponse->invoice) && isset($statusResponse->invoice->state)) {
-                $status = $statusResponse->invoice->state;
-            } else {
-                // Handle error if the status response is not valid
-                return 'Error: Unable to retrieve status for the invoice.';
-            }
+            $status = $statusResponse->invoice->state;
         }
 
         return $status;
