@@ -37,6 +37,6 @@ jobs:
           server: ftpupload.net
           username: if0_37114096
           password: QcIDYuIrKJ # Store sensitive data in GitHub Secrets
-          server-dir: intasend.wuaze.com/htdocs
+          server-dir: /intasend.wuaze.com/htdocs/
           retries: 3                 # Retry the connection up to 3 times in case of timeout
           retryDelay: 10             # Wait 10 seconds before retrying after a failure
