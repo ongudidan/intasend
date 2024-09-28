@@ -4970,3 +4970,575 @@ $_SERVER = [
     'PROD_DB_USERNAME' => 'dandeal_danny'
     'PROD_DB_PASSWORD' => 'I4QG&5C02mj['
 ]
+2024-09-28 14:28:01 [::1][-][12da4e820140cacc6398c80c7edd3281][error][GuzzleHttp\Exception\ConnectException] GuzzleHttp\Exception\ConnectException: cURL error 6: Could not resolve host: sandbox.intasend.com (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for https://sandbox.intasend.com/api/v1/payment/mpesa-stk-push/ in /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Handler/CurlFactory.php:275
+Stack trace:
+#0 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Handler/CurlFactory.php(205): GuzzleHttp\Handler\CurlFactory::createRejection()
+#1 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Handler/CurlFactory.php(157): GuzzleHttp\Handler\CurlFactory::finishError()
+#2 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Handler/CurlHandler.php(47): GuzzleHttp\Handler\CurlFactory::finish()
+#3 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Handler/Proxy.php(28): GuzzleHttp\Handler\CurlHandler->__invoke()
+#4 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Handler/Proxy.php(48): GuzzleHttp\Handler\Proxy::GuzzleHttp\Handler\{closure}()
+#5 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/PrepareBodyMiddleware.php(64): GuzzleHttp\Handler\Proxy::GuzzleHttp\Handler\{closure}()
+#6 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Middleware.php(31): GuzzleHttp\PrepareBodyMiddleware->__invoke()
+#7 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/RedirectMiddleware.php(71): GuzzleHttp\Middleware::GuzzleHttp\{closure}()
+#8 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Middleware.php(66): GuzzleHttp\RedirectMiddleware->__invoke()
+#9 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/HandlerStack.php(75): GuzzleHttp\Middleware::GuzzleHttp\{closure}()
+#10 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Client.php(333): GuzzleHttp\HandlerStack->__invoke()
+#11 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Client.php(169): GuzzleHttp\Client->transfer()
+#12 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Client.php(189): GuzzleHttp\Client->requestAsync()
+#13 /var/www/html/projects/intasend/vendor/intasend/intasend-php/src/Traits/BaseAPITrait.php(71): GuzzleHttp\Client->request()
+#14 /var/www/html/projects/intasend/vendor/intasend/intasend-php/src/Collection.php(29): IntaSend\IntaSendPHP\Collection->send_request()
+#15 /var/www/html/projects/intasend/vendor/intasend/intasend-php/src/Collection.php(38): IntaSend\IntaSendPHP\Collection->create()
+#16 /var/www/html/projects/intasend/controllers/PaymentsController.php(112): IntaSend\IntaSendPHP\Collection->mpesa_stk_push()
+#17 /var/www/html/projects/intasend/controllers/PaymentsController.php(81): app\controllers\PaymentsController->initiateStkPush()
+#18 [internal function]: app\controllers\PaymentsController->actionCreate()
+#19 /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array()
+#20 /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/Controller.php(178): yii\base\InlineAction->runWithParams()
+#21 /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/Module.php(552): yii\base\Controller->runAction()
+#22 /var/www/html/projects/intasend/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction()
+#23 /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/Application.php(384): yii\web\Application->handleRequest()
+#24 /var/www/html/projects/intasend/index.php(20): yii\base\Application->run()
+#25 {main}
+2024-09-28 14:28:01 [::1][-][12da4e820140cacc6398c80c7edd3281][info][application] $_GET = []
+
+$_POST = [
+    '_csrf' => 'FhzaOiiK8HVPhDbE2bRmUVd4r2_dlQffNcC0-bqaNF17SrxxXd2YQg7ABfOf2F80MCecHovyY6V3mIfL3fhSCg=='
+    'Payments' => [
+        'phone' => '254768540720'
+        'amount' => '10'
+    ]
+]
+
+$_FILES = []
+
+$_COOKIE = [
+    'pma_lang' => 'en'
+    'pmaUser-1' => 'P6MTb1xJ21tJ6ZCFCqUy66sFzPIzghHsQIDBr/R13wqe1yEteUF2M8gCqag='
+    'PHPSESSID' => '12da4e820140cacc6398c80c7edd3281'
+    '_csrf' => '475eed51cf7224c3651c0f702915ae2d29967ffe4c9a36573dc323077f3b86e4a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"mVfKuWh7AD37Fl9eg_3qVgdzBX32gbfW\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '155'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Linux\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36'
+    'HTTP_ORIGIN' => 'http://localhost'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/projects/intasend/payments/create'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-KE,en-GB;q=0.9,en-US;q=0.8,en;q=0.7'
+    'HTTP_COOKIE' => 'pma_lang=en; pmaUser-1=P6MTb1xJ21tJ6ZCFCqUy66sFzPIzghHsQIDBr%2FR13wqe1yEteUF2M8gCqag%3D; PHPSESSID=12da4e820140cacc6398c80c7edd3281; _csrf=475eed51cf7224c3651c0f702915ae2d29967ffe4c9a36573dc323077f3b86e4a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22mVfKuWh7AD37Fl9eg_3qVgdzBX32gbfW%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.62 (Debian) Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.62 (Debian)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/var/www/html'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/html'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/var/www/html/projects/intasend/index.php'
+    'REMOTE_PORT' => '48490'
+    'REDIRECT_URL' => '/projects/intasend/payments/create'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/projects/intasend/payments/create'
+    'SCRIPT_NAME' => '/projects/intasend/index.php'
+    'PHP_SELF' => '/projects/intasend/index.php'
+    'REQUEST_TIME_FLOAT' => 1727522881.9148
+    'REQUEST_TIME' => 1727522881
+    'ENVIRONMENT' => 'dev'
+    'APP_VERSION' => 'v1'
+    'APP_CODE' => 'omnibase'
+    'APP_NAME' => 'Delta Cosmetics'
+    'APP_DEVELOPER' => 'DoubleDeals Technologies'
+    'DEV_DB_DRIVER' => 'mysql'
+    'DEV_DB_HOST' => 'mariadb'
+    'DEV_DB_PORT' => '3306'
+    'DEV_DATABASE' => 'delta'
+    'DEV_DB_USERNAME' => 'root'
+    'DEV_DB_PASSWORD' => 'root'
+    'PROD_DB_HOST' => 'localhost'
+    'PROD_DATABASE' => 'dandeal_delta'
+    'PROD_DB_USERNAME' => 'dandeal_danny'
+    'PROD_DB_PASSWORD' => 'I4QG&5C02mj['
+]
+2024-09-28 14:28:04 [::1][-][12da4e820140cacc6398c80c7edd3281][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/site.css". in /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/Module.php:561
+Stack trace:
+#0 /var/www/html/projects/intasend/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction()
+#1 /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/Application.php(384): yii\web\Application->handleRequest()
+#2 /var/www/html/projects/intasend/index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in /var/www/html/projects/intasend/vendor/yiisoft/yii2/web/Application.php:115
+Stack trace:
+#0 /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/Application.php(384): yii\web\Application->handleRequest()
+#1 /var/www/html/projects/intasend/index.php(20): yii\base\Application->run()
+#2 {main}
+2024-09-28 14:28:04 [::1][-][12da4e820140cacc6398c80c7edd3281][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'pma_lang' => 'en'
+    'pmaUser-1' => 'P6MTb1xJ21tJ6ZCFCqUy66sFzPIzghHsQIDBr/R13wqe1yEteUF2M8gCqag='
+    'PHPSESSID' => '12da4e820140cacc6398c80c7edd3281'
+    '_csrf' => '475eed51cf7224c3651c0f702915ae2d29967ffe4c9a36573dc323077f3b86e4a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"mVfKuWh7AD37Fl9eg_3qVgdzBX32gbfW\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Linux\"'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36'
+    'HTTP_SEC_CH_UA' => '\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_ACCEPT' => 'text/css,*/*;q=0.1'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'style'
+    'HTTP_REFERER' => 'http://localhost/projects/intasend/payments/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-KE,en-GB;q=0.9,en-US;q=0.8,en;q=0.7'
+    'HTTP_COOKIE' => 'pma_lang=en; pmaUser-1=P6MTb1xJ21tJ6ZCFCqUy66sFzPIzghHsQIDBr%2FR13wqe1yEteUF2M8gCqag%3D; PHPSESSID=12da4e820140cacc6398c80c7edd3281; _csrf=475eed51cf7224c3651c0f702915ae2d29967ffe4c9a36573dc323077f3b86e4a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22mVfKuWh7AD37Fl9eg_3qVgdzBX32gbfW%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.62 (Debian) Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.62 (Debian)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/var/www/html'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/html'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/var/www/html/projects/intasend/index.php'
+    'REMOTE_PORT' => '48498'
+    'REDIRECT_URL' => '/projects/intasend/css/site.css'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/projects/intasend/css/site.css'
+    'SCRIPT_NAME' => '/projects/intasend/index.php'
+    'PHP_SELF' => '/projects/intasend/index.php'
+    'REQUEST_TIME_FLOAT' => 1727522884.7713
+    'REQUEST_TIME' => 1727522884
+    'ENVIRONMENT' => 'dev'
+    'APP_VERSION' => 'v1'
+    'APP_CODE' => 'omnibase'
+    'APP_NAME' => 'Delta Cosmetics'
+    'APP_DEVELOPER' => 'DoubleDeals Technologies'
+    'DEV_DB_DRIVER' => 'mysql'
+    'DEV_DB_HOST' => 'mariadb'
+    'DEV_DB_PORT' => '3306'
+    'DEV_DATABASE' => 'delta'
+    'DEV_DB_USERNAME' => 'root'
+    'DEV_DB_PASSWORD' => 'root'
+    'PROD_DB_HOST' => 'localhost'
+    'PROD_DATABASE' => 'dandeal_delta'
+    'PROD_DB_USERNAME' => 'dandeal_danny'
+    'PROD_DB_PASSWORD' => 'I4QG&5C02mj['
+]
+2024-09-28 14:28:05 [::1][-][12da4e820140cacc6398c80c7edd3281][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/site.css". in /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/Module.php:561
+Stack trace:
+#0 /var/www/html/projects/intasend/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction()
+#1 /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/Application.php(384): yii\web\Application->handleRequest()
+#2 /var/www/html/projects/intasend/index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in /var/www/html/projects/intasend/vendor/yiisoft/yii2/web/Application.php:115
+Stack trace:
+#0 /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/Application.php(384): yii\web\Application->handleRequest()
+#1 /var/www/html/projects/intasend/index.php(20): yii\base\Application->run()
+#2 {main}
+2024-09-28 14:28:05 [::1][-][12da4e820140cacc6398c80c7edd3281][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'pma_lang' => 'en'
+    'pmaUser-1' => 'P6MTb1xJ21tJ6ZCFCqUy66sFzPIzghHsQIDBr/R13wqe1yEteUF2M8gCqag='
+    'PHPSESSID' => '12da4e820140cacc6398c80c7edd3281'
+    '_csrf' => '475eed51cf7224c3651c0f702915ae2d29967ffe4c9a36573dc323077f3b86e4a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"mVfKuWh7AD37Fl9eg_3qVgdzBX32gbfW\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Linux\"'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36'
+    'HTTP_SEC_CH_UA' => '\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_ACCEPT' => 'text/css,*/*;q=0.1'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'style'
+    'HTTP_REFERER' => 'http://localhost/projects/intasend/payments/create'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-KE,en-GB;q=0.9,en-US;q=0.8,en;q=0.7'
+    'HTTP_COOKIE' => 'pma_lang=en; pmaUser-1=P6MTb1xJ21tJ6ZCFCqUy66sFzPIzghHsQIDBr%2FR13wqe1yEteUF2M8gCqag%3D; PHPSESSID=12da4e820140cacc6398c80c7edd3281; _csrf=475eed51cf7224c3651c0f702915ae2d29967ffe4c9a36573dc323077f3b86e4a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22mVfKuWh7AD37Fl9eg_3qVgdzBX32gbfW%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.62 (Debian) Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.62 (Debian)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/var/www/html'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/html'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/var/www/html/projects/intasend/index.php'
+    'REMOTE_PORT' => '48502'
+    'REDIRECT_URL' => '/projects/intasend/css/site.css'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/projects/intasend/css/site.css'
+    'SCRIPT_NAME' => '/projects/intasend/index.php'
+    'PHP_SELF' => '/projects/intasend/index.php'
+    'REQUEST_TIME_FLOAT' => 1727522885.9718
+    'REQUEST_TIME' => 1727522885
+    'ENVIRONMENT' => 'dev'
+    'APP_VERSION' => 'v1'
+    'APP_CODE' => 'omnibase'
+    'APP_NAME' => 'Delta Cosmetics'
+    'APP_DEVELOPER' => 'DoubleDeals Technologies'
+    'DEV_DB_DRIVER' => 'mysql'
+    'DEV_DB_HOST' => 'mariadb'
+    'DEV_DB_PORT' => '3306'
+    'DEV_DATABASE' => 'delta'
+    'DEV_DB_USERNAME' => 'root'
+    'DEV_DB_PASSWORD' => 'root'
+    'PROD_DB_HOST' => 'localhost'
+    'PROD_DATABASE' => 'dandeal_delta'
+    'PROD_DB_USERNAME' => 'dandeal_danny'
+    'PROD_DB_PASSWORD' => 'I4QG&5C02mj['
+]
+2024-09-28 14:28:07 [::1][-][12da4e820140cacc6398c80c7edd3281][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/site.css". in /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/Module.php:561
+Stack trace:
+#0 /var/www/html/projects/intasend/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction()
+#1 /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/Application.php(384): yii\web\Application->handleRequest()
+#2 /var/www/html/projects/intasend/index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in /var/www/html/projects/intasend/vendor/yiisoft/yii2/web/Application.php:115
+Stack trace:
+#0 /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/Application.php(384): yii\web\Application->handleRequest()
+#1 /var/www/html/projects/intasend/index.php(20): yii\base\Application->run()
+#2 {main}
+2024-09-28 14:28:07 [::1][-][12da4e820140cacc6398c80c7edd3281][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'pma_lang' => 'en'
+    'pmaUser-1' => 'P6MTb1xJ21tJ6ZCFCqUy66sFzPIzghHsQIDBr/R13wqe1yEteUF2M8gCqag='
+    'PHPSESSID' => '12da4e820140cacc6398c80c7edd3281'
+    '_csrf' => '475eed51cf7224c3651c0f702915ae2d29967ffe4c9a36573dc323077f3b86e4a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"mVfKuWh7AD37Fl9eg_3qVgdzBX32gbfW\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Linux\"'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36'
+    'HTTP_SEC_CH_UA' => '\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_ACCEPT' => 'text/css,*/*;q=0.1'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'style'
+    'HTTP_REFERER' => 'http://localhost/projects/intasend/payments/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-KE,en-GB;q=0.9,en-US;q=0.8,en;q=0.7'
+    'HTTP_COOKIE' => 'pma_lang=en; pmaUser-1=P6MTb1xJ21tJ6ZCFCqUy66sFzPIzghHsQIDBr%2FR13wqe1yEteUF2M8gCqag%3D; PHPSESSID=12da4e820140cacc6398c80c7edd3281; _csrf=475eed51cf7224c3651c0f702915ae2d29967ffe4c9a36573dc323077f3b86e4a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22mVfKuWh7AD37Fl9eg_3qVgdzBX32gbfW%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.62 (Debian) Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.62 (Debian)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/var/www/html'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/html'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/var/www/html/projects/intasend/index.php'
+    'REMOTE_PORT' => '48502'
+    'REDIRECT_URL' => '/projects/intasend/css/site.css'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/projects/intasend/css/site.css'
+    'SCRIPT_NAME' => '/projects/intasend/index.php'
+    'PHP_SELF' => '/projects/intasend/index.php'
+    'REQUEST_TIME_FLOAT' => 1727522887.4746
+    'REQUEST_TIME' => 1727522887
+    'ENVIRONMENT' => 'dev'
+    'APP_VERSION' => 'v1'
+    'APP_CODE' => 'omnibase'
+    'APP_NAME' => 'Delta Cosmetics'
+    'APP_DEVELOPER' => 'DoubleDeals Technologies'
+    'DEV_DB_DRIVER' => 'mysql'
+    'DEV_DB_HOST' => 'mariadb'
+    'DEV_DB_PORT' => '3306'
+    'DEV_DATABASE' => 'delta'
+    'DEV_DB_USERNAME' => 'root'
+    'DEV_DB_PASSWORD' => 'root'
+    'PROD_DB_HOST' => 'localhost'
+    'PROD_DATABASE' => 'dandeal_delta'
+    'PROD_DB_USERNAME' => 'dandeal_danny'
+    'PROD_DB_PASSWORD' => 'I4QG&5C02mj['
+]
+2024-09-28 14:28:10 [::1][-][12da4e820140cacc6398c80c7edd3281][error][yii\web\HttpException:404] yii\base\InvalidRouteException: Unable to resolve the request "css/site.css". in /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/Module.php:561
+Stack trace:
+#0 /var/www/html/projects/intasend/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction()
+#1 /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/Application.php(384): yii\web\Application->handleRequest()
+#2 /var/www/html/projects/intasend/index.php(20): yii\base\Application->run()
+#3 {main}
+
+Next yii\web\NotFoundHttpException: Page not found. in /var/www/html/projects/intasend/vendor/yiisoft/yii2/web/Application.php:115
+Stack trace:
+#0 /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/Application.php(384): yii\web\Application->handleRequest()
+#1 /var/www/html/projects/intasend/index.php(20): yii\base\Application->run()
+#2 {main}
+2024-09-28 14:28:10 [::1][-][12da4e820140cacc6398c80c7edd3281][info][application] $_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'pma_lang' => 'en'
+    'pmaUser-1' => 'P6MTb1xJ21tJ6ZCFCqUy66sFzPIzghHsQIDBr/R13wqe1yEteUF2M8gCqag='
+    'PHPSESSID' => '12da4e820140cacc6398c80c7edd3281'
+    '_csrf' => '475eed51cf7224c3651c0f702915ae2d29967ffe4c9a36573dc323077f3b86e4a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"mVfKuWh7AD37Fl9eg_3qVgdzBX32gbfW\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Linux\"'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36'
+    'HTTP_SEC_CH_UA' => '\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_ACCEPT' => 'text/css,*/*;q=0.1'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'no-cors'
+    'HTTP_SEC_FETCH_DEST' => 'style'
+    'HTTP_REFERER' => 'http://localhost/projects/intasend/payments/create'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-KE,en-GB;q=0.9,en-US;q=0.8,en;q=0.7'
+    'HTTP_COOKIE' => 'pma_lang=en; pmaUser-1=P6MTb1xJ21tJ6ZCFCqUy66sFzPIzghHsQIDBr%2FR13wqe1yEteUF2M8gCqag%3D; PHPSESSID=12da4e820140cacc6398c80c7edd3281; _csrf=475eed51cf7224c3651c0f702915ae2d29967ffe4c9a36573dc323077f3b86e4a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22mVfKuWh7AD37Fl9eg_3qVgdzBX32gbfW%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.62 (Debian) Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.62 (Debian)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/var/www/html'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/html'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/var/www/html/projects/intasend/index.php'
+    'REMOTE_PORT' => '48518'
+    'REDIRECT_URL' => '/projects/intasend/css/site.css'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/projects/intasend/css/site.css'
+    'SCRIPT_NAME' => '/projects/intasend/index.php'
+    'PHP_SELF' => '/projects/intasend/index.php'
+    'REQUEST_TIME_FLOAT' => 1727522890.4076
+    'REQUEST_TIME' => 1727522890
+    'ENVIRONMENT' => 'dev'
+    'APP_VERSION' => 'v1'
+    'APP_CODE' => 'omnibase'
+    'APP_NAME' => 'Delta Cosmetics'
+    'APP_DEVELOPER' => 'DoubleDeals Technologies'
+    'DEV_DB_DRIVER' => 'mysql'
+    'DEV_DB_HOST' => 'mariadb'
+    'DEV_DB_PORT' => '3306'
+    'DEV_DATABASE' => 'delta'
+    'DEV_DB_USERNAME' => 'root'
+    'DEV_DB_PASSWORD' => 'root'
+    'PROD_DB_HOST' => 'localhost'
+    'PROD_DATABASE' => 'dandeal_delta'
+    'PROD_DB_USERNAME' => 'dandeal_danny'
+    'PROD_DB_PASSWORD' => 'I4QG&5C02mj['
+]
+2024-09-28 14:28:15 [::1][-][12da4e820140cacc6398c80c7edd3281][error][GuzzleHttp\Exception\ConnectException] GuzzleHttp\Exception\ConnectException: cURL error 6: Could not resolve host: sandbox.intasend.com (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for https://sandbox.intasend.com/api/v1/payment/mpesa-stk-push/ in /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Handler/CurlFactory.php:275
+Stack trace:
+#0 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Handler/CurlFactory.php(205): GuzzleHttp\Handler\CurlFactory::createRejection()
+#1 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Handler/CurlFactory.php(157): GuzzleHttp\Handler\CurlFactory::finishError()
+#2 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Handler/CurlHandler.php(47): GuzzleHttp\Handler\CurlFactory::finish()
+#3 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Handler/Proxy.php(28): GuzzleHttp\Handler\CurlHandler->__invoke()
+#4 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Handler/Proxy.php(48): GuzzleHttp\Handler\Proxy::GuzzleHttp\Handler\{closure}()
+#5 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/PrepareBodyMiddleware.php(64): GuzzleHttp\Handler\Proxy::GuzzleHttp\Handler\{closure}()
+#6 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Middleware.php(31): GuzzleHttp\PrepareBodyMiddleware->__invoke()
+#7 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/RedirectMiddleware.php(71): GuzzleHttp\Middleware::GuzzleHttp\{closure}()
+#8 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Middleware.php(66): GuzzleHttp\RedirectMiddleware->__invoke()
+#9 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/HandlerStack.php(75): GuzzleHttp\Middleware::GuzzleHttp\{closure}()
+#10 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Client.php(333): GuzzleHttp\HandlerStack->__invoke()
+#11 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Client.php(169): GuzzleHttp\Client->transfer()
+#12 /var/www/html/projects/intasend/vendor/guzzlehttp/guzzle/src/Client.php(189): GuzzleHttp\Client->requestAsync()
+#13 /var/www/html/projects/intasend/vendor/intasend/intasend-php/src/Traits/BaseAPITrait.php(71): GuzzleHttp\Client->request()
+#14 /var/www/html/projects/intasend/vendor/intasend/intasend-php/src/Collection.php(29): IntaSend\IntaSendPHP\Collection->send_request()
+#15 /var/www/html/projects/intasend/vendor/intasend/intasend-php/src/Collection.php(38): IntaSend\IntaSendPHP\Collection->create()
+#16 /var/www/html/projects/intasend/controllers/PaymentsController.php(112): IntaSend\IntaSendPHP\Collection->mpesa_stk_push()
+#17 /var/www/html/projects/intasend/controllers/PaymentsController.php(81): app\controllers\PaymentsController->initiateStkPush()
+#18 [internal function]: app\controllers\PaymentsController->actionCreate()
+#19 /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/InlineAction.php(57): call_user_func_array()
+#20 /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/Controller.php(178): yii\base\InlineAction->runWithParams()
+#21 /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/Module.php(552): yii\base\Controller->runAction()
+#22 /var/www/html/projects/intasend/vendor/yiisoft/yii2/web/Application.php(103): yii\base\Module->runAction()
+#23 /var/www/html/projects/intasend/vendor/yiisoft/yii2/base/Application.php(384): yii\web\Application->handleRequest()
+#24 /var/www/html/projects/intasend/index.php(20): yii\base\Application->run()
+#25 {main}
+2024-09-28 14:28:15 [::1][-][12da4e820140cacc6398c80c7edd3281][info][application] $_GET = []
+
+$_POST = [
+    '_csrf' => 'dHzUStjqQZlQHjQVorueKtIPAvG4r6f-ZanMBgcsm_YZKrIBrb0prhFaByLk16dPtVAxgO7Iw4Qn8f80YE79oQ=='
+    'Payments' => [
+        'phone' => '254768540720'
+        'amount' => '10'
+    ]
+]
+
+$_FILES = []
+
+$_COOKIE = [
+    'pma_lang' => 'en'
+    'pmaUser-1' => 'P6MTb1xJ21tJ6ZCFCqUy66sFzPIzghHsQIDBr/R13wqe1yEteUF2M8gCqag='
+    'PHPSESSID' => '12da4e820140cacc6398c80c7edd3281'
+    '_csrf' => '475eed51cf7224c3651c0f702915ae2d29967ffe4c9a36573dc323077f3b86e4a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"mVfKuWh7AD37Fl9eg_3qVgdzBX32gbfW\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '155'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Linux\"'
+    'HTTP_ORIGIN' => 'http://localhost'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/projects/intasend/payments/create'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br, zstd'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-KE,en-GB;q=0.9,en-US;q=0.8,en;q=0.7'
+    'HTTP_COOKIE' => 'pma_lang=en; pmaUser-1=P6MTb1xJ21tJ6ZCFCqUy66sFzPIzghHsQIDBr%2FR13wqe1yEteUF2M8gCqag%3D; PHPSESSID=12da4e820140cacc6398c80c7edd3281; _csrf=475eed51cf7224c3651c0f702915ae2d29967ffe4c9a36573dc323077f3b86e4a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22mVfKuWh7AD37Fl9eg_3qVgdzBX32gbfW%22%3B%7D'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.62 (Debian) Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.62 (Debian)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => '/var/www/html'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/html'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/var/www/html/projects/intasend/index.php'
+    'REMOTE_PORT' => '46382'
+    'REDIRECT_URL' => '/projects/intasend/payments/create'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/projects/intasend/payments/create'
+    'SCRIPT_NAME' => '/projects/intasend/index.php'
+    'PHP_SELF' => '/projects/intasend/index.php'
+    'REQUEST_TIME_FLOAT' => 1727522895.5348
+    'REQUEST_TIME' => 1727522895
+    'ENVIRONMENT' => 'dev'
+    'APP_VERSION' => 'v1'
+    'APP_CODE' => 'omnibase'
+    'APP_NAME' => 'Delta Cosmetics'
+    'APP_DEVELOPER' => 'DoubleDeals Technologies'
+    'DEV_DB_DRIVER' => 'mysql'
+    'DEV_DB_HOST' => 'mariadb'
+    'DEV_DB_PORT' => '3306'
+    'DEV_DATABASE' => 'delta'
+    'DEV_DB_USERNAME' => 'root'
+    'DEV_DB_PASSWORD' => 'root'
+    'PROD_DB_HOST' => 'localhost'
+    'PROD_DATABASE' => 'dandeal_delta'
+    'PROD_DB_USERNAME' => 'dandeal_danny'
+    'PROD_DB_PASSWORD' => 'I4QG&5C02mj['
+]

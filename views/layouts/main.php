@@ -62,6 +62,12 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 
     <main id="main" class="flex-shrink-0" role="main">
         <div class="container">
+            <?php if (Yii::$app->session->hasFlash('paymentStatus')): ?>
+                <?php $paymentStatus = Yii::$app->session->getFlash('paymentStatus'); ?>
+                <div class="alert <?= $paymentStatus['class'] ?>">
+                    <?= $paymentStatus['message'] ?>
+                </div>
+            <?php endif; ?>
             <?php if (!empty($this->params['breadcrumbs'])): ?>
                 <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>
             <?php endif ?>

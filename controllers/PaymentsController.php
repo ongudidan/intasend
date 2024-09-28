@@ -105,49 +105,47 @@ class PaymentsController extends Controller
             'test' => true,
         ];
 
-        // Initialize the Collection class
         $collection = new Collection();
         $collection->init($credentials);
 
-        // Initiate the STK push
+        // Initiating the STK push
         $response = $collection->mpesa_stk_push($amount, $phone_number);
 
-        if (isset($response->invoice) && isset($response->invoice->invoice_id)) {
-            $invoice_id = $response->invoice->invoice_id;
-            // Store the invoice_id in the session for later status check
-            Yii::$app->session->set('invoice_id', $invoice_id);
-            return $invoice_id; // Return the invoice ID
-        } else {
-            return 'Error: Invalid response from STK push initiation.';
-        }
-    }
+        // Get Invoice ID
+        $invoice_id = $response->invoice->invoice_id;
 
-    public function actionCheckStatus()
-    {
-        $invoice_id = Yii::$app->session->get('invoice_id');
+        // Initialize status variable
+        $status = "PROCESSING";
 
-        if (!$invoice_id) {
-            return json_encode(['status' => 'error', 'message' => 'No invoice ID found.']);
-        }
+        // Check the status
+        while ($status == "PROCESSING") {
+            sleep(1);
 
-        $credentials = [
-            'token' => 'ISSecretKey_test_691abd3d-84d5-4c9b-a4e1-801a4aa7e404',
-            'publishable_key' => 'ISPubKey_test_c1825e70-974c-4fdb-861f-cec6ae1d1d2d',
-            'test' => true,
-        ];
-
-        $collection = new Collection();
-        $collection->init($credentials);
-
-        // Get the status of the transaction
-        $statusResponse = $collection->status($invoice_id);
-
-        if (isset($statusResponse->invoice) && isset($statusResponse->invoice->state)) {
+            // Check
+            $statusResponse = $collection->status($invoice_id);
+            // Get update on status
             $status = $statusResponse->invoice->state;
-            return json_encode(['status' => $status]); // Return the status as JSON
-        } else {
-            return json_encode(['status' => 'error', 'message' => 'Unable to retrieve status.']);
         }
+
+        // Set flash message based on status
+        if ($status === 'COMPLETE') {
+            Yii::$app->session->setFlash('paymentStatus', [
+                'class' => 'alert-success',
+                'message' => 'Payment Successful'
+            ]);
+        } elseif ($status === 'FAILED') {
+            Yii::$app->session->setFlash('paymentStatus', [
+                'class' => 'alert-error',
+                'message' => 'Payment Cancelled'
+            ]);
+        } else {
+            Yii::$app->session->setFlash('paymentStatus', [
+                'class' => 'alert-warning',
+                'message' => 'Payment Pending'
+            ]);
+        }
+
+        return $status;
     }
 
 
