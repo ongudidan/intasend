@@ -123,45 +123,50 @@ class PaymentsController extends Controller
 
     public function initiateStkPush($amount, $phone_number)
     {
-        try {
-            // Initialize the IntaSend collection
-            $credentials = [
-                'token' => 'ISSecretKey_test_691abd3d-84d5-4c9b-a4e1-801a4aa7e404',
-                'publishable_key' => 'ISPubKey_test_c1825e70-974c-4fdb-861f-cec6ae1d1d2d',
-                'test' => true,
-            ];
+        // Define your credentials
+        $credentials = [
+            'token' => 'ISSecretKey_test_691abd3d-84d5-4c9b-a4e1-801a4aa7e404',
+            'publishable_key' => 'ISPubKey_test_c1825e70-974c-4fdb-861f-cec6ae1d1d2d',
+            'test' => true,
+        ];
 
-            $collection = new Collection();
-            $collection->init($credentials);
+        // Initialize the Collection class
+        $collection = new Collection();
+        $collection->init($credentials);
 
-            // Initiate the STK Push
-            $response = $collection->mpesa_stk_push($amount, $phone_number);
+        // Initiate the STK push
+        $response = $collection->mpesa_stk_push($amount, $phone_number);
 
-            if (!isset($response->invoice)) {
-                throw new \Exception("Failed to retrieve invoice from the response");
-            }
-
-            // Get the invoice ID
+        // Check if the response is valid
+        if (isset($response->invoice) && isset($response->invoice->invoice_id)) {
             $invoice_id = $response->invoice->invoice_id;
-
-            // Poll for the status update
-            $status = "PROCESSING";
-            while ($status == "PROCESSING") {
-                sleep(2); // Wait for 2 seconds
-                $statusResponse = $collection->status($invoice_id);
-
-                if (isset($statusResponse->invoice->state)) {
-                    $status = $statusResponse->invoice->state;
-                }
-            }
-
-            return $status;
-        } catch (\Exception $e) {
-            Yii::error('STK Push error: ' . $e->getMessage());
-            // Return error message as a string
-            return 'Error: ' . $e->getMessage();
+        } else {
+            // Handle error if the invoice ID is not present in the response
+            return 'Error: Invalid response from STK push initiation.';
         }
+
+        // Initialize status variable
+        $status = "PROCESSING";
+
+        // Check the status of the invoice
+        while ($status == "PROCESSING") {
+            sleep(1); // Delay for a second before checking status again
+
+            // Check the status of the invoice
+            $statusResponse = $collection->status($invoice_id);
+
+            // Check if the status response is valid
+            if (isset($statusResponse->invoice) && isset($statusResponse->invoice->state)) {
+                $status = $statusResponse->invoice->state;
+            } else {
+                // Handle error if the status response is not valid
+                return 'Error: Unable to retrieve status for the invoice.';
+            }
+        }
+
+        return $status;
     }
+
 
     /**
      * Updates an existing Payments model.
