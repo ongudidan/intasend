@@ -1,4 +1,4 @@
-name: 🚀 Deploy manually to doubledeals & infinityfree 
+name: 🚀 Deploy manually to doubledeals/intasend & infinityfree 
 
 on:
   workflow_dispatch: # Allows manual triggering of the workflow
@@ -22,7 +22,7 @@ jobs:
           server-dir: /  # The directory on the server to deploy files to
 
   # Deploy to InfinityFree
-  
+
   # deploy-to-infinityfree:
   #   name: 🎉 Deploy to InfinityFree
   #   runs-on: ubuntu-latest
