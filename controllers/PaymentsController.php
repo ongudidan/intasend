@@ -190,8 +190,6 @@ class PaymentsController extends Controller
         return $status;
     }
 
-
-
     /**
      * Updates an existing Payments model.
      * If update is successful, the browser will be redirected to the 'view' page.
