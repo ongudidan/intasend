@@ -33,7 +33,7 @@ if ($host === 'localhost') {
         'password' => 'I4QG&5C02mj[',
         'charset' => 'utf8',
     ];
-} elseif ($host === 'delta.wuaze.com') {
+} elseif ($host === 'intasend.wuaze.com') {
     // Production environment for wuaze.com
     return [
         'class' => 'yii\db\Connection',
