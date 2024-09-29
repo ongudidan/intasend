@@ -37,7 +37,7 @@ if ($host === 'localhost') {
     // Production environment for wuaze.com
     return [
         'class' => 'yii\db\Connection',
-        'dsn' => 'mysql:host=sql110.infinityfree.com;dbname=if0_37114096_delta',
+        'dsn' => 'mysql:host=sql110.infinityfree.com;dbname=if0_37114096_intasend',
         'username' => 'if0_37114096',
         'password' => 'QcIDYuIrKJ',
         'charset' => 'utf8',
